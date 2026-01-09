@@ -1,15 +1,11 @@
-# =========================================
+
 # Supermarket Sales Analysis Project
-# FINAL FIXED VERSION (NO ERRORS)
-# =========================================
 
 import pandas as pd
 import matplotlib.pyplot as plt
 import os
 
-# -----------------------------
 # 1. Load Dataset
-# -----------------------------
 file_name = "SuperMarket Analysis.csv"
 
 if not os.path.exists(file_name):
@@ -28,9 +24,7 @@ print(df.columns)
 print("\nDataset Info:")
 print(df.info())
 
-# -----------------------------
 # 2. Fix column names (IMPORTANT)
-# -----------------------------
 # Detect total sales column automatically
 possible_total_cols = ['Total', 'total', 'Sales', 'sales', 'Total Sales']
 
@@ -45,25 +39,19 @@ if total_col is None:
 
 print(f"\n✅ Using '{total_col}' as total sales column")
 
-# -----------------------------
 # 3. Data Cleaning
-# -----------------------------
 df['Date'] = pd.to_datetime(df['Date'])
 df['Time'] = df['Time'].astype(str)  # remove warning
 
 print("\nMissing Values:")
 print(df.isnull().sum())
 
-# -----------------------------
 # 4. Basic Analysis
-# -----------------------------
 print("\nBranch Statistics:")
 branch_stats = df.groupby('Branch')[total_col].agg(['mean','median','min','max'])
 print(branch_stats)
 
-# -----------------------------
 # 5. Visualizations
-# -----------------------------
 plt.figure()
 plt.hist(df[total_col], bins=30)
 plt.title("Distribution of Total Sales")
@@ -98,9 +86,7 @@ plt.title("Gross Income by Product Line")
 plt.suptitle("")
 plt.show()
 
-# -----------------------------
 # 6. Correlation Matrix
-# -----------------------------
 corr_cols = ['Unit price','Quantity', total_col,'gross income','Rating']
 corr = df[corr_cols].corr()
 
@@ -112,9 +98,7 @@ plt.yticks(range(len(corr)), corr.columns)
 plt.title("Correlation Matrix")
 plt.show()
 
-# -----------------------------
 # 7. Advanced Analysis (FINAL ANSWERS)
-# -----------------------------
 print("\nAdvanced Analysis Answers:")
 print("="*40)
 
