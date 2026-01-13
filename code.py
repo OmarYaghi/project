@@ -9,7 +9,7 @@ import os
 file_name = "SuperMarket Analysis.csv"
 
 if not os.path.exists(file_name):
-    print("❌ CSV file not found. Please upload the file first.")
+    print(" CSV file not found. Please upload the file first.")
     raise SystemExit
 
 df = pd.read_csv(file_name)
@@ -35,9 +35,9 @@ for col in possible_total_cols:
         break
 
 if total_col is None:
-    raise KeyError("❌ No Total/Sales column found in dataset")
+    raise KeyError(" No Total/Sales column found in dataset")
 
-print(f"\n✅ Using '{total_col}' as total sales column")
+print(f"\n Using '{total_col}' as total sales column")
 
 # 3. Data Cleaning
 df['Date'] = pd.to_datetime(df['Date'])
@@ -118,4 +118,4 @@ print(f"Q4: Highest rated product line: {top_product}")
 corr_price_qty = df['Unit price'].corr(df['Quantity'])
 print(f"Q5: Correlation between unit price and quantity: {corr_price_qty:.3f}")
 
-print("\n✅ Analysis Completed Successfully (No Errors)")
+print("\n Analysis Completed Successfully (No Errors)")
